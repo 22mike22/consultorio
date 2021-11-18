@@ -4,7 +4,7 @@ const router = express.Router()
 
 const consultasController = require('../controllers/consultas')
 
-router.get('/', usuariosController.getAllConsultas)
+router.get('/', consultasController.getAllConsultas)
 
 module.exports = router
 

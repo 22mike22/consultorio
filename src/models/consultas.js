@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     fechaDeConsulta: DataTypes.DATE
   }, {
     sequelize,
-    modelName: 'Consulta',
+    modelName: 'Consultas',
   });
   return Consultas;
 };

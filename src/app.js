@@ -66,4 +66,19 @@ if (seedFacturas) {
     })
 }*/
 
+const consultaRouter = require('./routes/consultas')
+app.use('/consultas', consultaRouter)
+const seedConsultas = process.argv[2]
+if (seedConsultas) {
+  db.sequelize
+    .sync({ force: true })
+    .then(() => {
+      createSeeds()
+    })
+
+    .catch((err) => {
+      console.error(err)
+    })
+}
+
 module.exports = app
