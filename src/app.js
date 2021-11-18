@@ -81,4 +81,19 @@ if (seedConsultas) {
     })
 }
 
+const medicamentoRouter = require('./routes/medicamentos')
+app.use('/medicamentos', medicamentoRouter)
+const seedMedicamentos = process.argv[2]
+if (seedMedicamentos) {
+  db.sequelize
+    .sync({ force: true })
+    .then(() => {
+      createSeeds()
+    })
+
+    .catch((err) => {
+      console.error(err)
+    }) 
+}
+
 module.exports = app

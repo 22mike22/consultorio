@@ -4,27 +4,28 @@ const chance = require('chance').Chance()
 const faker = require('faker')
 
 const createSeeds = async () => {
-  const consultasCount = 50
+  const facturasCount = 50
 
   chance.mixin({
-    consulta: function () {
+    factura: function () {
       return {
-	nombre: chance.name(),
-	motivo: chance.paragraph(),
-        fechaDeConsulta: chance.date(),
+        fechaFactura: chance.date(),
+        monto: chance.integer({min:0,max:1000}),
         createdAt: chance.date(),
         updatedAt: chance.date()
       }
     },
   })
-  for (let index = 0; index < consultasCount; index++) {
-    const consulta = await db.Consultas.create(chance.consulta())
+  for (let index = 0; index < facturasCount; index++) {
+    const factura = await db.Facturas.create(chance.factura())
   }
-  for (let index = 0; index < consultasCount; index++) {
-    const consulta = await db.Consultas.create({
-      nombre: faker.name.findName(),
-      motivo: faker.lorem.sentence(),
-      fechaDeConsulta: faker.date.recent(10),
+  for (let index = 0; index < facturasCount; index++) {
+    const factura = await db.Facturas.create({
+      fechaFactura: faker.date.recent(10),
+      monto: faker.datatype.number({
+    'min': 0,
+    'max': 1000
+}),
       createdAt: faker.date.recent(2),
       updatedAt: faker.date.recent(2)
     })
